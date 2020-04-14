@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2 - Exercise 1</title>
+</head>
+
+<body>
+    <h1>Módulo 2</h1>
+    <h2>Exercício 1</h2>
+    <div id="grid">
+        
+    </div>
+
+    <button id="btn">Gera Quadrado</button>
+
+    <script>
+        var btnElement = document.querySelector('#btn')
+
+        btnElement.onclick = function () {
+            var qddElement = document.createElement('div');
+            qddElement.style.width = '100px';
+            qddElement.style.height = '100px';
+            qddElement.style.backgroundColor = '#f00';
+
+            var gridElement = document.querySelector('#grid');
+            gridElement.appendChild(qddElement);
+
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2 - Exercise 2</title>
+</head>
+
+<body>
+    <h1>Módulo 2</h1>
+    <h2>Exercício 2</h2>
+    
+    <button id="btn">Gera Quadrado</button>
+    <div id="grid" style="display: block;"></div>
+    
+    <script>
+        // função para gerar cor randomicas 
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        var newColor = getRandomColor();
+        var btnElement = document.querySelector('#btn')
+        var gridElement = document.querySelector('#grid');
+        var qddElement = document.querySelector('div#grid div')
+
+        btnElement.onclick = function () {
+            var qddElement = document.createElement('div');
+            qddElement.style.width = '100px';
+            qddElement.style.height = '100px';
+            qddElement.style.backgroundColor = '#f00';
+            qddElement.style.float = 'left';
+            gridElement.appendChild(qddElement);
+            qddElement.onmouseover = function () {
+                qddElement.style.backgroundColor = getRandomColor();
+            }
+        }
+    </script>
+</body>
+
+</html>

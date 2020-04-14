@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2 - Exercise 3</title>
+</head>
+
+<body>
+    <h1>Módulo 2</h1>
+    <h2>Exercício 3</h2>
+
+    <ul id="lista"></ul>
+
+    <script>
+        var createItem = function (item) {
+            var li = document.createElement("li");
+            li.textContent = item;
+            return li;
+        }
+        
+        var liElement = function (item) {
+
+            var nomes = ["Diego", "Gabriel", "Lucas"];
+            var ul = document.querySelector('#lista');
+
+            for (obj in nomes) {
+                console.log(nomes[obj] + "\n");
+                ul.appendChild(createItem(nomes[obj]));
+            }
+        }
+
+        liElement();
+    </script>
+</body>
+
+</html>
