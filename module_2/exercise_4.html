@@ -13,9 +13,7 @@
 
     <input type="text" name="nome">
     <button>Adicionar</button>
-
     <ul id="lista"></ul>
-
     <script>
         var createItem = function (item) {
             var li = document.createElement("li");
@@ -24,10 +22,8 @@
         }
 
         var liElement = function () {
-
             var nomes = ["Diego", "Gabriel", "Lucas"];
             var ul = document.querySelector('#lista');
-
             for (obj in nomes) {
                 console.log(nomes[obj] + "\n");
                 ul.appendChild(createItem(nomes[obj]));
