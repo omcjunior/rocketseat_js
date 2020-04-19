@@ -6,8 +6,10 @@ var ulElement = document.querySelector('ul');
 var delElement = document.querySelector('ul li a');
 var msgElement = document.querySelector('span#msg');
 
-// Criar item da lista com com tag <li>
-// parametro dsc = texto que
+/** 
+ * Criar item para lista de todo com tag <li>
+ * @param {string} dsc - Descrição do item
+ */
 var createItem = function (dsc) {
     var li = document.createElement('li');
     var ds = document.createTextNode(dsc);
@@ -23,7 +25,7 @@ var createItem = function (dsc) {
     ulElement.appendChild(li);
 }
 
-// Evento do botão Add para adicionar tarefa
+/** Evento para adicionar um item */
 btnElement.onclick = function () {
     logmsg("");
     if (itemElement.value == "") {
@@ -40,7 +42,7 @@ btnElement.onclick = function () {
 
 }
 
-// Renderiza a lista de tarefas
+/** Renderiza a lista de itens */
 var renderList = function () {
     ulElement.innerHTML = "";
     for (i of todoList) {
@@ -48,26 +50,26 @@ var renderList = function () {
     }
 }
 
-// Adiciona tarefa na lista
+/** Adiciona tarefa na lista */
 var addItem = function(){
     todoList.push(itemElement.value);
     renderList();
     saveToStorage();
 }
 
-// Remove tarefa da lista
+/** Remove tarefa da lista */
 var removeItem = function(pos){
     todoList.splice(pos, 1);
     renderList();
     saveToStorage();
 }
 
-// Mensagem de log para usuário
+/** Mensagem de log para usuário */
 var logmsg = function(msg){
     msgElement.innerHTML = msg;
 }
 
-// Armazena no storage do browser, usando todoList como key
+/** Armazena no storage do browser, usando todoList como key */
 var saveToStorage = function(){
     localStorage.setItem('todoList', JSON.stringify(todoList));
 }

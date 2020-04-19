@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo 4 - Execise 2</title>
+
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h1>Modulo 4 - Exercicio 4</h1>
+    <input type="text" name="user" id="user">
+    <button>load user...</button>
+    <div id="loading" class="hidden">Carregando...</div>
+    <ul id="listrepo"></ul>
+    <div id="out"></div>
+
+    <script>
+        var inputElement = document.querySelector('input[name=user]');
+        var btnElement = document.querySelector('button');
+        var outElement = document.querySelector('#out');
+        var ulElement = document.querySelector('ul#listrepo');
+        var loading = document.querySelector('#loading');
+
+        btnElement.onclick = function () {
+            isLoading();
+            var usergit = inputElement.value || 'diego3g';
+            var urlgit = "https://api.github.com/users/" + usergit + "/repos";
+            axios.get(urlgit)
+                .then(function (response) {
+                    // handle success
+                    console.log(response);
+                    //outElement.innerHTML = generateSuccessHTMLOutput(response);
+                    rederList(response.data);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                    outElement.innerHTML = generateErrorHTMLOutput(error);
+                })
+                .then(function () {
+                    // always executed
+                    unLoading();
+                });
+        }
+
+        var isLoading = function () {
+            ulElement.innerHTML = '';
+            outElement.innerHTML = '';
+            loading.classList.remove('hidden');
+        }
+
+        var unLoading = function () {
+            loading.classList.add('hidden');
+        }
+
+        var rederList = function (list) {
+            ulElement.innerHTML = '';
+            for (item of list) {
+                createRepo(item.name);
+            }
+        }
+
+        var createRepo = function (describe) {
+            var liElement = document.createElement('li');
+            var textElement = document.createTextNode(describe);
+            liElement.appendChild(textElement);
+            ulElement.appendChild(liElement);
+        }
+
+        function generateSuccessHTMLOutput(response) {
+            return '<h4>Result</h4>' +
+                '<h5>Status:</h5> ' +
+                '<pre>' + response.status + ' ' + response.statusText + '</pre>' +
+                '<h5>Headers:</h5>' +
+                '<pre>' + JSON.stringify(response.headers, null, '\t') + '</pre>' +
+                '<h5>Data:</h5>' +
+                '<pre>' + JSON.stringify(response.data, null, '\t') + '</pre>';
+        }
+
+        function generateErrorHTMLOutput(error) {
+            return '<h4>Result</h4>' +
+                '<h5>Message:</h5> ' +
+                '<pre>' + error.message + '</pre>' +
+                '<h5>Status:</h5> ' +
+                '<pre>' + error.response.status + ' ' + error.response.statusText + '</pre>' +
+                '<h5>Headers:</h5>' +
+                '<pre>' + JSON.stringify(error.response.headers, null, '\t') + '</pre>' +
+                '<h5>Data:</h5>' +
+                '<pre>' + JSON.stringify(error.response.data, null, '\t') + '</pre>';
+        }
+    </script>
+</body>
+
+</html>
